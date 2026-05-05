@@ -1,6 +1,53 @@
 ﻿@page "/lista-personas"
+@using TP2.Models
 <h3>ListaPersona</h3>
 
-@code {
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre Completo</th>
+            <th scope="col">Email</th>
+            <th scope="col">Domicilio</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Persona persona in personas)
+        {
+            <tr>
+                <td>@persona.Id</td>
+                <td>@persona.NombreCompleto</td>
+                <td>@persona.Email</td>
+                <td>@persona.Domicilio</td>
+                <td>@persona.FechaNacimiento</td>
+                <td>
+                    <img src="@persona.RutaImagen" alt="Foto de la persona" class="h-25 w-25" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
+@code {
+    private List<Persona> personas = new List<Persona>();
+
+
+    protected override void OnInitialized()
+    {
+        personas = new List<Persona>
+        {
+            new Persona { Id= 1, NombreCompleto = "Julián Agustín", Email = "miCorreo@gmail.com", Domicilio = "Mi Calle", FechaNacimiento = new DateTime(2004, 05, 12), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 2, NombreCompleto = "Marcos Perez", Email = "marcos.perez@gmail.com", Domicilio = "Calle de Marcos", FechaNacimiento = new DateTime(1993, 05, 12), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 3, NombreCompleto = "Luna Dangelis", Email = "luna.dangelis@gmail.com", Domicilio = "Calle de Luna", FechaNacimiento = new DateTime(1999, 05, 12), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 4, NombreCompleto = "Jon Snow", Email = "jon.snow@gmail.com", Domicilio = "Calle de Jon", FechaNacimiento = new DateTime(1330, 03, 12), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 5, NombreCompleto = "Daenerys Targeryen", Email = "daenerys.targeryen@gmail.com", Domicilio = "Calle de Daenerys", FechaNacimiento = new DateTime(1335, 04, 12), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 6, NombreCompleto = "Tyrion Lannister", Email = "tyrion.lannister@gmail.com", Domicilio = "Calle de Tyrion", FechaNacimiento = new DateTime(2004, 05, 12), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 7, NombreCompleto = "Ned Stark", Email = "ned.stark@gmail.com", Domicilio = "Calle de Ned", FechaNacimiento = new DateTime(1300, 02, 05), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 8, NombreCompleto = "Arya Stark", Email = "arya.stark@gmail.com", Domicilio = "Calle de Arya", FechaNacimiento = new DateTime(1350, 05, 11), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 9, NombreCompleto = "Sansa Stark", Email = "sansa.stark@gmail.com", Domicilio = "Calle de Sansa", FechaNacimiento = new DateTime(1345, 02, 15), RutaImagen = "/img/fotoPerfil.jpeg" },
+            new Persona { Id= 10, NombreCompleto = "Bran Stark", Email = "bran.stark@gmail.com", Domicilio = "Calle de Bran", FechaNacimiento = new DateTime(1350, 01, 12), RutaImagen = "/img/fotoPerfil.jpeg" },
+        };
+    }
 }
