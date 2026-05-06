@@ -1,0 +1,40 @@
+﻿@page "/login"
+@using TP2.Models
+
+@if (seValido == true)
+{
+    <h3>@textoValidacion</h3>
+}
+
+<EditForm Model="@login" OnValidSubmit="@ValidarCredenciales">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <label class="form-control" for="usuario">Ingrese el usuario</label>
+    <InputText class="form-control mb-5" @bind-Value="login.Usuario" id="usuario"/>
+
+    <label class="form-control" for="clave">Ingrese la clave</label>
+    <InputText class="form-control mb-5" @bind-Value="login.Clave" type="password" id="clave" />
+
+    <button class="btn btn-success" type="submit">Ingresar</button>
+</EditForm>
+
+@code {
+    public TP2.Models.Login login { get; set; } = new TP2.Models.Login(); // Tuve que especificar a qué login me refería porque estaba instanciando un objeto del componente page Login (raro).
+
+    bool seValido = false;
+    string textoValidacion = string.Empty;
+
+    public void ValidarCredenciales()
+    {
+        seValido = true;
+        if (login.Usuario.Trim() == "alumno" && login.Clave.Trim() == "1234")
+        {
+            textoValidacion = "Inicio de sesión correctamente!";
+        }
+        else
+        {
+            textoValidacion = "Inicio de sesión fallido!";
+        }
+    }
+}
